@@ -5,4 +5,4 @@ findTheSheep is a network scanning tool that will scan a subnet and report back 
 
 carePackage simulates a C2 server/application that calls home periodically and delivers some tasty nuggets.
 
-purePWNage is a Ransomware simulation script. It will create a company secret file and then encrypt it. The key is then "hidden" and a ransom note is left for the student.
+purePwnage is a Ransomware simulation script. It will create a company secret file and then encrypt it. The key is then "hidden" and a ransom note is left for the student.
