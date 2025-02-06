@@ -8,9 +8,9 @@ from cryptography.fernet import Fernet
 from datetime import datetime
 
 # Define the plain text file and encrypted file names
-PLAIN_TEXT_FILE = 'plain_text.txt'
+PLAIN_TEXT_FILE = 'company_secrets.txt'
 ENCRYPTED_FILE = f'{PLAIN_TEXT_FILE}.encrypt'
-METADATA_FILE = 'encryption_metadata.txt'
+RANSOM_NOTE = 'ransom_note.txt'
 
 # Function to generate a key for encryption
 def generate_key():
@@ -41,16 +41,36 @@ def encrypt_file(filename, key):
     with open(ENCRYPTED_FILE, "wb") as file:
         file.write(encrypted_data)
 
-# Function to create metadata file
-def create_metadata_file():
+# Function to create ransom note
+def create_ransom_note():
     """
-    Create a text file containing metadata about the encryption process
+    Create a ransom text file containing metadata about the encryption process and payment instructions
     """
-    with open(METADATA_FILE, 'w') as metadata_file:
-        metadata_file.write("Metadata for Encryption Process\n")
-        metadata_file.write(f"File Name: {PLAIN_TEXT_FILE}\n")
-        metadata_file.write(f"Encrypted File Name: {ENCRYPTED_FILE}\n")
-        metadata_file.write(f"Encryption Time: {datetime.now()}\n")
+    with open(RANSOM_NOTE, 'w') as ransom_note:
+        ransom_note.write("We own your data!\n")
+        ransom_note.write(f"Encryption Time: {datetime.now()}\n")
+
+# Function to rename a file
+def rename_file(filename, new_filename):
+    """
+    Renames the specified file from filename to new_filename
+    """
+    if os.path.exists(filename):
+        os.rename(filename, new_filename)
+        print(f"Renamed {filename} to {new_filename}")
+    else:
+        print(f"{filename} does not exist")
+
+# Function to delete a file
+def delete_file(filename):
+    """
+    Deletes the specified file
+    """
+    if os.path.exists(filename):
+        os.remove(filename)
+        print(f"Deleted {filename}")
+    else:
+        print(f"{filename} does not exist")
 
 # Main function to handle the encryption process
 def main():
@@ -60,17 +80,22 @@ def main():
 
     # Create plain text file
     with open(PLAIN_TEXT_FILE, 'w') as file:
-        file.write("This is a plain text file for encryption.")
+        file.write("This is the CTF flag!")
 
     # Encrypt the plain text file
     encrypt_file(PLAIN_TEXT_FILE, key)
 
-    # Create metadata file
-    create_metadata_file()
+    # Rename the secret.key file to .secret.key after use
+    rename_file('secret.key', '.secret.key')
 
-    print(f"Plain Text File: {PLAIN_TEXT_FILE}")
+    # Delete the plain text file
+    delete_file(PLAIN_TEXT_FILE)
+
+    # Create metadata file
+    create_ransom_note()
+
     print(f"Encrypted File: {ENCRYPTED_FILE}")
-    print(f"Metadata File: {METADATA_FILE}")
+    print(f"Ransome Note: {RANSOM_NOTE}")
 
 if __name__ == "__main__":
     main()
