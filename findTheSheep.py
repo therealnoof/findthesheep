@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # quick and dirty sheep finder
+# Run the script as root/sudo and pass in the subnet and name of file to output to, example:  ./findthesheep 10.0.2.0/24 -o scan_results.txt
+# depending on resources it can take up to 20 min to scan a /24 subnet
 
 import socket
 import ipaddress
