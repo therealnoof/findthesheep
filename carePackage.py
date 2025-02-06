@@ -1,5 +1,6 @@
 #This script will make a simple call to a remote IP with a payload.
 #This can simulate a malicious program exfiltrating data or C2
+#Everything is hard coded into the script, no arguments are passed. Change the IP and Port and Payload. Interval can also be adjusted.
 
 #!/usr/bin/env python3
 import subprocess
