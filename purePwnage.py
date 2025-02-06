@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-#This is a simulation script to create a text file and then encrypt it. This could simulate a Ransoomware attack. The script also dumps a ransom note for the admin.
-#Make sure cryptography is installed on the system
+#This is a simulation script to create a text file with company secrets and then encrypts it. This could simulate a Ransoomware attack. The script also dumps a ransom note for the admin.
+#Make sure to apt install cryptography on the system
 #If this is a new system, chmod the file: chmod +x purePwnage.py
 
 import os
