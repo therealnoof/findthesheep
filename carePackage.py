@@ -1,8 +1,8 @@
 #This script will make a simple call to a remote IP with a payload.
 #This can simulate a malicious program exfiltrating data or C2
 #Everything is hard coded into the script, no arguments are passed. Change the IP and Port and Payload. Interval can also be adjusted.
-#Student should find a payload being sent every 30 seconds in a packet dumpl.
-#Inside the POST is a base64 encoded string
+#Student should find a payload being sent every 30 seconds in a packet dump.
+#Inside the payload is a base64 encoded string
 #Decoded it contains the CTF flag: CTF-Hax0r!
 
 #!/usr/bin/env python3
