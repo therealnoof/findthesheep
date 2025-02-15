@@ -6,6 +6,7 @@
 #Decoded it contains the CTF flag: CTF-Hax0r!
 
 #!/usr/bin/env python3
+import os
 import time
 from urllib.request import Request, urlopen
 import mimetypes
