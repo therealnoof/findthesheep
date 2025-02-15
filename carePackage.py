@@ -69,10 +69,10 @@ def main():
     try:
         create_file(directory, file_name)
         
-        # Loop every 10 seconds
+        # Loop every 30 seconds
         while True:
             post_file(remote_url, full_path)
-            time.sleep(10)  # Sleep for 10 seconds
+            time.sleep(30)  # Sleep for 30 seconds
 
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
